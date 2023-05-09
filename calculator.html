@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <style>
+        .container {
+            width: 270px;
+            background-color: black;
+            margin: auto;
+            border-radius: 20px;
+            padding: 10px 0px 20px 0px;
+        }
+
+        .container .row button {
+            width: 60px;
+            height: 70px;
+            border-radius: 50px;
+            font-size: 25px;
+        }
+
+        .output {
+            height: 100px;
+            width: 262px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0px 20px;
+
+        }
+
+        .output input {
+            height: 70px;
+            width: 230px;
+            border-radius: 10px;
+            font-size: 25px;
+            text-align: end;
+            overflow-x: auto;
+
+        }
+
+        .container .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .number {
+            background-color: orange;
+        }
+
+        .sign {
+            background-color: aqua;
+        }
+
+        .clear {
+            background-color: aquamarine;
+        }
+        .output input:nth-child(1){
+            font-size: 20px;
+        }
+
+        .output input:nth-child(2) {
+            height: 30px;
+            position: absolute;
+            top: 50px;
+            left: 0px;
+            border-radius: 0px 0px 10px 10px;
+            border-top: 0px;
+        }
+
+        .input {
+            text-align: center;
+            position: relative;
+        }
+
+        
+    </style>
+    <div class="container">
+        <div class="output ">
+            <div class="input">
+                <input type="text" id="display">
+                <input type="text" id="input">
+            </div>
+
+        </div>
+        <div class="row">
+            <button class="clear" onclick="allClear()">CE</button>
+            <button class="clear" onclick="ClearInput()">C</button>
+            <button class="clear"  onclick="remove()"><img src="images/delete.png" alt="" width="35px"
+                    height="35px"></button>
+            <button class="sign" onclick="newValue('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="number" onclick="newValue('7')">7</button>
+            <button class="number" onclick="newValue('8')">8</button>
+            <button class="number" onclick="newValue('9')">9</button>
+            <button class="sign" onclick="newValue('*')">x</button>
+        </div>
+        <div class="row">
+            <button class="number" onclick="newValue('4')">4</button>
+            <button class="number" onclick="newValue('5')">5</button>
+            <button class="number" onclick="newValue('6')">6</button>
+            <button class="sign" onclick="newValue('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="number" onclick="newValue('1')">1</button>
+            <button class="number" onclick="newValue('2')">2</button>
+            <button class="number" onclick="newValue('3')">3</button>
+            <button class="sign" onclick="newValue('+')">+</button>
+        </div>
+        <div class="row">
+            <button class="sign" onclick="newValue('00')">00</button>
+            <button class="number" onclick="newValue('0')">0</button>
+            <button class="sign" onclick="newValue('.')">.</button>
+            <button class="sign" onclick="result()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let input = document.getElementById("input")
+        let display = document.getElementById("display")
+        function newValue(inp) {
+            // debugger;
+            input.value += inp;
+            display.value += inp;
+        }
+
+        function result() {
+            try {
+                input.value = eval(input.value);
+            }
+            catch (Error) {
+                input.value = "Syntax Error";
+            }
+
+        }
+        function ClearInput() {
+            input.value = "";
+        }
+        function allClear() {
+            input.value = "";
+            display.value = "";
+        }
+        function remove() {
+            input.value = input.value.slice(0, -1);
+            display.value = display.value.slice(0, -1);
+        }
+        
+    </script>
+</body>
+
+</html>
